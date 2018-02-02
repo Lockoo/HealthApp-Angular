@@ -6,22 +6,11 @@
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
     "curly": true,
     "deprecation": {
       "severity": "warn"
     },
     "eofline": true,
-    "forin": true,
-    "import-blacklist": [
-      true,
-      "rxjs",
-      "rxjs/Rx"
-    ],
-    "import-spacing": true,
     "indent": [
       true,
       "spaces"
@@ -72,18 +61,9 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
-    "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else",
-      "check-whitespace"
-    ],
-    "prefer-const": true,
     "quotemark": [
       true,
       "single"
@@ -123,12 +103,6 @@
       "attribute",
       "app",
       "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
