@@ -32,7 +32,8 @@ export class LoginComponent
         }
         else
         {
-          this.router.navigate(['/auth/user']);
+          //Navigate to user Component(Todo)
+          //this.router.navigate(['/auth/user']);
         }
       });
   }

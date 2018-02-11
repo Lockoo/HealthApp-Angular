@@ -16,9 +16,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {provideRoutes} from '@angular/router';
 
 
-import {SignupComponent } from './signup/signup.component';
-import {SignupService} from './signup/signup.service';
-
 import {DocModule} from './doctors/doc.module';
 
 
@@ -26,7 +23,6 @@ import {DocModule} from './doctors/doc.module';
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     PageNotFoundComponent,
     HomeComponent
   ],
@@ -40,7 +36,7 @@ import {DocModule} from './doctors/doc.module';
     AuthModule,
     DocModule
   ],
-  providers: [SignupService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

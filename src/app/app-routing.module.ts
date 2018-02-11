@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './auth/login.component';
 import {HomeComponent} from './home.component';
-import {SignupComponent} from './signup/signup.component';
+
 
 
 
@@ -11,7 +11,6 @@ const appRoutes: Routes = [
   {path: 'index', component: HomeComponent},
   {path: '', redirectTo: 'index', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
 ];
 
 @NgModule({

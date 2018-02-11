@@ -1,4 +1,3 @@
-import { UserComponent } from '../user/user.component';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {LoginComponent} from './login.component';
@@ -15,7 +14,7 @@ import { UserRegistrationComponent } from './user-registration.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, AuthRoutingModule],
-  declarations: [AuthComponent, LoginComponent, UserComponent,
+  declarations: [AuthComponent, LoginComponent,
   UserRegistrationComponent, ForgotPasswordComponent, LogoutComponent],
   providers: [{provide: AuthService, useClass: AuthService}
   ]
