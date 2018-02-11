@@ -22,11 +22,14 @@ export class UserRegistrationComponent
     {
       this.model.role = 1;
     }
+
     this.authService.signup(this.model)
       .then((status: SignupStatus) =>
       {
+        alert(status.user.firstName);
         this.signupStatus.code = status.code;
         this.signupStatus.message = status.message;
+        this.signupStatus.user = status.user;
         if (this.signupStatus.code === 'USER_ACCOUNT_EXISTS')
         {
           this.alertStyle = 'alert alert-danger';

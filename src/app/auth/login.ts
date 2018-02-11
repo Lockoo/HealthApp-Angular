@@ -15,8 +15,8 @@ export class NewUser {
 
 export class User {
   constructor(
+    public firstName: string,
     public email: string,
-    public firstname: string,
     public role: number,
   ) {}
 }

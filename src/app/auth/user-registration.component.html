@@ -1,4 +1,4 @@
-<div class="{{alertStyle}}" role="alert" *ngIf="signupStatus.code != ''">{{signupStatus.message}}</div>
+<div class="{{alertStyle}}" role="alert" *ngIf="signupStatus.code != ''"> {{signupStatus.message}} for User: {{signupStatus.user.firstName}} </div>
 <div style="" *ngIf="signupStatus.code === '' || signupStatus.code ==='USER_ACCOUNT_EXISTS'">
   <h2>New User Registration</h2>
   <hr/>

@@ -22,8 +22,8 @@ export class LoginComponent {
     this.reset();
     this.authService.login(this.model)
       .subscribe((status: LoginStatus) => {
-        alert('json reponse object status field: ' + status.code);
-        this.loginStatus.code = status.code;
+        //alert('json reponse object status field: ' + status.code);
+        this.loginStatus = status;
         if (this.loginStatus.code === 'FAILURE') {
           this.alertStyle = 'alert alert-danger';
         }
