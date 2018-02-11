@@ -1,3 +1,4 @@
+import { UserComponent } from '../user/user.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -28,6 +29,10 @@ const authRoutes: Routes = [
         path: 'logout',
         component: LogoutComponent,
       },
+      {
+        path: 'user',
+        component: UserComponent
+      }
     ]
   }
 ];

@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
   selector: 'Login',
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent
+{
 
   alertStyle = '';
   model = new Login('', '');
@@ -18,30 +19,39 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
 
-  onLogin() {
+  onLogin()
+  {
     this.reset();
     this.authService.login(this.model)
-      .subscribe((status: LoginStatus) => {
-        //alert('json reponse object status field: ' + status.code);
+      .subscribe((status: LoginStatus) =>
+      {
         this.loginStatus = status;
-        if (this.loginStatus.code === 'FAILURE') {
+        if (this.loginStatus.code === 'FAILURE')
+        {
           this.alertStyle = 'alert alert-danger';
+        }
+        else
+        {
+          this.router.navigate(['/auth/user']);
         }
       });
   }
 
-  onLogout() {
+  onLogout()
+  {
     this.authService.logout();
   }
 
-  private reset() {
+  private reset()
+  {
     this.alertStyle = '';
     this.loginStatus.code = '';
     this.loginStatus.message = '';
   }
 
   //warum erst bei 2. aufrum daten da?
-  public getUserCount() {
+  public getUserCount()
+  {
 
     //    this.client.get<UsersInfo>('http://localhost:8080/login/count')
     //      .subscribe(data => {
