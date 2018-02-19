@@ -26,7 +26,6 @@ export class UserRegistrationComponent
     this.authService.signup(this.model)
       .then((status: SignupStatus) =>
       {
-        alert(status.user.firstName);
         this.signupStatus.code = status.code;
         this.signupStatus.message = status.message;
         this.signupStatus.user = status.user;

@@ -35,7 +35,6 @@ export class DoctorListComponent implements OnInit
           console.error('An error occurred in retrieving doctors list, navigating to login: ', error);
         }));
 
-    alert('end: ' + this.doctors[0].firstName);
   }
 
   onSelect(speciality: string)

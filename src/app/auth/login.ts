@@ -10,6 +10,7 @@ export class NewUser {
   public email = '';
   public password = '';
   public firstName = '';
+  public lastName = '';
   constructor() {}
 }
 

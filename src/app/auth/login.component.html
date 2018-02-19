@@ -1,4 +1,5 @@
-<div class="{{alertStyle}}" role="alert" *ngIf="loginStatus.code != ''"> Welcome, {{loginStatus.user.firstName}}!</div>
+<div class="{{alertStyle}}" role="alert" *ngIf="loginStatus.code != '' && loginStatus.code != 'FAILURE'"> Welcome, {{loginStatus.user.firstName}}!</div>
+<div class="{{alertStyle}}" role="alert" *ngIf="loginStatus.code == 'FAILURE'"> Login fehlgeschlagen!</div>
 <div style="width: 60%;margin-top: 50px"  *ngIf="loginStatus.code === '' || loginStatus.code ==='FAILURE'">
   <h2>Users Login</h2>
   <hr/>
