@@ -1,20 +1,8 @@
 # Angular Frontend
 
-Submodule of [Healthapp-Spring](https://github.com/Lockoo/HealthApp-Spring)	
+As this is a Submodule of [Healthapp-Spring](https://github.com/Lockoo/HealthApp-Spring) go there to see how to run the Application as a hole with Docker.
+Of course you can also only build the Angular App via 'npm install' and 'ng serve'.
 
-
-# Prerequisite
-
--NPM installed
-
--Angular installed
-
-
-# Running this Project
-
-1. Clone / Download Project (be sure to download from [master](https://github.com/Lockoo/HealthApp-Angular) and not the submodule tree)
-2. npm install
-3. ng serve
 
 
 
