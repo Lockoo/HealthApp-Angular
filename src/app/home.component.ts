@@ -13,6 +13,10 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
       <span style="padding-right: 5px"><a routerLink="/auth/login" routerLinkActivate="active">Login to existing Account</a></span>
       <span style="padding-left: 5px"><a href="/auth/forgotpassword" routerLinkActive="active">Forgot Password?</a></span>
     </div>
+    <p></p>
+    <div>
+      <span style="padding-right: 5px"><a href="/doc/list" routerLinkActive="active">List all Doctors</a></span>
+    </div>
   `
 })
 export class HomeComponent

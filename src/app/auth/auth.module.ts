@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 
 import {AuthRoutingModule} from './auth-app-routing.module';
 import { AuthComponent } from './auth.component';
+import { DoctorRegistrationComponent } from './doc-registration.component';
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { LogoutComponent } from './logout.component';
 import { UserRegistrationComponent } from './user-registration.component';
@@ -15,7 +16,7 @@ import { UserRegistrationComponent } from './user-registration.component';
 @NgModule({
   imports: [CommonModule, FormsModule, AuthRoutingModule],
   declarations: [AuthComponent, LoginComponent,
-  UserRegistrationComponent, ForgotPasswordComponent, LogoutComponent],
+  UserRegistrationComponent, ForgotPasswordComponent, LogoutComponent, DoctorRegistrationComponent],
   providers: [{provide: AuthService, useClass: AuthService}
   ]
 })

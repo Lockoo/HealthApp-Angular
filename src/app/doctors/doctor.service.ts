@@ -1,11 +1,9 @@
 import {Doctor} from './doctor';
+import {HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Http, Response, Headers} from '@angular/http';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/toPromise';
+
 
 
 //import {Cookie} from 'ng2-cookies';
@@ -15,40 +13,25 @@ export class DoctorService
 {
   private doctorsUrl = 'http://localhost:8080/doc/';
   public doctors: Observable<Doctor[]>;
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
-  constructor(private http: Http) {}
-
-  getDoctorsBySpeciality(specialityCode: string): Observable<Doctor[]>
+  constructor(private http: HttpClient)
   {
-    //    let path = '';
-    //    if (specialityCode != null)
-    //    {
-    //      path = '/' + specialityCode;
-    //    }
-
-    let headers = new Headers({
-      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-    });
-
-    this.doctors = this.http.get(this.doctorsUrl, {headers: headers})
-      .map(this.extractData)
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-
-    return this.doctors;
   }
 
-
-  private extractData(res: Response)
+  getDoctorsBySpeciality(speciality: string): Observable<Doctor[]>
   {
-    let body = res.json();
-    let doctors = [];
+    const url = this.doctorsUrl + 'bySpeciality';
+    return this.http.post<Doctor[]>(url, speciality, this.httpOptions); 
+  }
 
-    for (let i = 0; i < body.length; i++)
-    {
-      let doctor = new Doctor(body[i].firstName, body[i].lastName, body[i].email, body[i].speciality);
-      doctors.push(doctor);
-    }
-    return doctors;
+  getAllDoctors(): Observable<Doctor[]>
+  {
+    return this.http.get<Doctor[]>(this.doctorsUrl);
   }
 
 }

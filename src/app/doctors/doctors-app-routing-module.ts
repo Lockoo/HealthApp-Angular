@@ -11,6 +11,14 @@ const authRoutes: Routes = [
       {
         path: 'list',
         component: DoctorListComponent,
+      },
+      {
+        path: 'speciality',
+        component: DoctorListComponent
+      },
+      {
+        path: ':speciality',
+        component: DoctorListComponent
       }
     ]
   }

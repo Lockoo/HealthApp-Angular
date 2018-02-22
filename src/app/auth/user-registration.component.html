@@ -1,4 +1,14 @@
-<div class="{{alertStyle}}" role="alert" *ngIf="signupStatus.code != ''"> {{signupStatus.message}} for User: {{signupStatus.user.firstName}} </div>
+<div class="{{alertStyle}}" role="alert"
+	*ngIf="signupStatus.code != '' && signupStatus.code == 'USER_ACCOUNT_CREATED'">
+	{{signupStatus.message}} for User: {{signupStatus.user.firstName}}</div>
+
+<div class="{{alertStyle}}" role="alert"
+	*ngIf="signupStatus.code != '' && signupStatus.code == 'DOCTOR_ACCOUNT_CREATED'">
+	{{signupStatus.message}} for Doctor: {{signupStatus.user.firstName}}</div>	
+	
+<div class="{{alertStyle}}" role="alert"
+	*ngIf="signupStatus.code != '' && signupStatus.code == 'USER_ACCOUNT_EXISTS'">This
+	email is already in use!</div>
 <div style=""
 	*ngIf="signupStatus.code === '' || signupStatus.code ==='USER_ACCOUNT_EXISTS'">
 	<h2>New User Registration</h2>
@@ -59,6 +69,18 @@
 					(change)="isDoctor = !isDoctor" /> <strong>I am a Doctor</strong>
 			</div>
 		</div>
+
+		<div class="form-group" *ngIf="isDoctor == true">
+			<label for="speciality" class="col-sm-2 control-label">Speciality</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="speciality"
+					placeholder="Speciality" required [(ngModel)]="model.speciality"
+					name="speciality" #speciality="ngModel">
+				<div [hidden]="speciality.valid || speciality.pristine"
+					class="alert alert-danger">Speciality is required</div>
+			</div>
+		</div>
+
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-success"

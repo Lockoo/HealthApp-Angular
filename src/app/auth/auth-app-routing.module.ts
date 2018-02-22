@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AuthComponent} from './auth.component';
+import { DoctorRegistrationComponent } from './doc-registration.component';
 import {LoginComponent} from './login.component';
 import {UserRegistrationComponent} from './user-registration.component';
 import {ForgotPasswordComponent} from './forgot-password.component';
@@ -28,6 +29,10 @@ const authRoutes: Routes = [
         path: 'logout',
         component: LogoutComponent,
       },
+      {
+        path: 'doc',
+        component: DoctorRegistrationComponent
+      }
     ]
   }
 ];

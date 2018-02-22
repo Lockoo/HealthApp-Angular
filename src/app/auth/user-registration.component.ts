@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 
 import {NewUser, SignupStatus} from './login';
 import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'register',
@@ -14,7 +15,7 @@ export class UserRegistrationComponent
   model = new NewUser();
   isDoctor = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit()
   {
@@ -35,6 +36,8 @@ export class UserRegistrationComponent
         }
       });
     this.alertStyle = 'alert alert-success';
+
+
   }
 }
 

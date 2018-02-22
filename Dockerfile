@@ -39,6 +39,6 @@ ADD wait-for-it.sh /ng-app/wait-for-it.sh
 RUN apk add --no-cache bash
 
 
-ENTRYPOINT /ng-app/wait-for-it.sh healthapp-spring:8080 --timeout=55 -- nginx -g 'daemon off;'
+ENTRYPOINT /ng-app/wait-for-it.sh healthapp-spring:8080 --timeout=60 -- nginx -g 'daemon off;'
 
 

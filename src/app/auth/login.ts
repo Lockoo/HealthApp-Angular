@@ -11,21 +11,24 @@ export class NewUser {
   public password = '';
   public firstName = '';
   public lastName = '';
+  public speciality = '';
   constructor() {}
 }
 
 export class User {
   constructor(
     public firstName: string,
+    public lastName: string,
     public email: string,
     public role: number,
+    public speciality: string
   ) {}
 }
 
 export class SignupStatus {
   public code = '';
   public message = '';
-  public user = new User('', '', 0);
+  public user = new User('', '', '', 0, '');
   constructor() {}
 }
 
