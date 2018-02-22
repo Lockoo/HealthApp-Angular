@@ -13,6 +13,8 @@ export class DoctorListComponent implements OnInit
 {
 
   doctors: Doctor[];
+  selectedDoctor: Doctor;
+  firstName: string;
   doctorsCount: number;
   errorMessage: string;
   setSpeciality: string;
@@ -23,12 +25,31 @@ export class DoctorListComponent implements OnInit
     private route: ActivatedRoute)
   {
     this.doctors = new Array();
+    this.selectedDoctor = new Doctor('', '', '', '');
   }
+
 
   ngOnInit()
   {
 
   }
+
+  onChangeFirstName()
+  {
+    this.doctorService.changeFirstName(this.selectedDoctor, this.firstName)
+      .subscribe(doctor => this.selectedDoctor = doctor);
+
+
+    //TODO den gewählten Doc reloaden // neu setzten
+    for (let doctor of this.doctors)
+    {
+      if (doctor.email === this.selectedDoctor.email)
+      {
+        doctor = this.selectedDoctor;
+      }
+    }
+  }
+
 
   showAll()
   {
@@ -45,19 +66,18 @@ export class DoctorListComponent implements OnInit
   }
 
   //TODO
-  showDoctors(speciality: string)
+  showDoctors()
   {
-    this.doctorService.getDoctorsBySpeciality(speciality)
-    .subscribe(doctors => this.doctors = doctors,
-               error => this.error = error);
+    this.doctorService.getDoctorsBySpeciality(this.setSpeciality)
+      .subscribe(doctors => this.doctors = doctors,
+      error => this.error = error);
   }
 
   //TODO
   onSelect(speciality: string)
   {
-    this.router.navigateByUrl('doc/' + speciality);
-    this.showDoctors(speciality);
     this.setSpeciality = speciality;
+    this.showDoctors();
   }
 
 }

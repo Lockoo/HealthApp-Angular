@@ -23,13 +23,15 @@
       <li class="list-group-item"><strong>Speciality</strong>: {{doctor.speciality}}</li>
     </ul>
     <div>
-      <button type="button" class="btn btn-info btn-sm">
-        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+      <button type="button" (click)="selectedDoctor = doctor">Change first name
       </button>
-      <button type="button" class="btn btn-success btn-sm">
-        <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
+      <button type="button" (click)="selectedDoctor = doctor">Change specialty
       </button>
     </div>
+    <form *ngIf="selectedDoctor == doctor" (ngSubmit) = "onChangeFirstName()">
+    	<input type="text" name="firstName" id="firstName" placeholder="new Firstname" required [(ngModel)]="firstName">
+    	<input type="submit" value="Submit">
+    </form>
   </div>
 </div>
 <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>

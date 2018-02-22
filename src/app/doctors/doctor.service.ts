@@ -1,4 +1,4 @@
-import {Doctor} from './doctor';
+import {Doctor, UpdatedDoc} from './doctor';
 import {HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
@@ -26,12 +26,24 @@ export class DoctorService
   getDoctorsBySpeciality(speciality: string): Observable<Doctor[]>
   {
     const url = this.doctorsUrl + 'bySpeciality';
-    return this.http.post<Doctor[]>(url, speciality, this.httpOptions); 
+    return this.http.post<Doctor[]>(url, speciality, this.httpOptions);
   }
 
   getAllDoctors(): Observable<Doctor[]>
   {
     return this.http.get<Doctor[]>(this.doctorsUrl);
+  }
+
+  changeFirstName(doc: Doctor, firstName: string): Observable<Doctor>
+  {
+    const url = this.doctorsUrl + 'changeFirstName';
+    const updatedDoc = new UpdatedDoc(doc, firstName);
+    return this.http.post<Doctor>(url, updatedDoc, this.httpOptions);
+  }
+
+  changeSpeciality(speciality: string)
+  {
+
   }
 
 }
