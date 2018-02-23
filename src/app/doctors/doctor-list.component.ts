@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, DoCheck, Input, IterableDiffers} from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
@@ -9,47 +9,22 @@ import {DoctorService} from './doctor.service';
   selector: 'doctor-list',
   templateUrl: './doctor-list.component.html'
 })
-export class DoctorListComponent implements OnInit
+export class DoctorListComponent
 {
-
-  doctors: Doctor[];
+  @Input() doctors: Doctor[];
   selectedDoctor: Doctor;
   firstName: string;
   doctorsCount: number;
   errorMessage: string;
   setSpeciality: string;
   error = '';
+  differ: any;
 
-  constructor(private doctorService: DoctorService,
-    private router: Router,
-    private route: ActivatedRoute)
+  constructor(private doctorService: DoctorService)
   {
     this.doctors = new Array();
-    this.selectedDoctor = new Doctor('', '', '', '');
+    this.selectedDoctor = new Doctor(-1, '', '', '', '');
   }
-
-
-  ngOnInit()
-  {
-
-  }
-
-  onChangeFirstName()
-  {
-    this.doctorService.changeFirstName(this.selectedDoctor, this.firstName)
-      .subscribe(doctor => this.selectedDoctor = doctor);
-
-
-    //TODO den gewählten Doc reloaden // neu setzten
-    for (let doctor of this.doctors)
-    {
-      if (doctor.email === this.selectedDoctor.email)
-      {
-        doctor = this.selectedDoctor;
-      }
-    }
-  }
-
 
   showAll()
   {
@@ -60,12 +35,10 @@ export class DoctorListComponent implements OnInit
       error =>
       {
         alert(error);
-        this.router.navigateByUrl('/auth/login');
         console.error('An error occurred in retrieving doctors list, navigating to login: ', error);
       });
   }
 
-  //TODO
   showDoctors()
   {
     this.doctorService.getDoctorsBySpeciality(this.setSpeciality)
@@ -73,11 +46,26 @@ export class DoctorListComponent implements OnInit
       error => this.error = error);
   }
 
-  //TODO
   onSelect(speciality: string)
   {
     this.setSpeciality = speciality;
     this.showDoctors();
+  }
+
+  onChangeFirstName()
+  {
+    let index;
+
+    for (let i = 0; i < this.doctors.length; i++)
+    {
+      if (this.doctors[i].id === this.selectedDoctor.id)
+      {
+        index = i;
+      }
+    }
+
+    this.doctorService.changeFirstName(this.selectedDoctor, this.firstName)
+      .subscribe(doctor => this.doctors[index] = doctor);
   }
 
 }
