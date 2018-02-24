@@ -11,14 +11,13 @@ import {DoctorService} from './doctor.service';
 })
 export class DoctorListComponent
 {
-  @Input() doctors: Doctor[];
+  doctors: Doctor[];
   selectedDoctor: Doctor;
   firstName: string;
-  doctorsCount: number;
   errorMessage: string;
   setSpeciality: string;
   error = '';
-  differ: any;
+
 
   constructor(private doctorService: DoctorService)
   {
@@ -29,11 +28,11 @@ export class DoctorListComponent
   showAll()
   {
     this.setSpeciality = 'All';
-    //this.router.navigateByUrl('doc/' + 'list');
     this.doctorService.getAllDoctors()
       .subscribe(doctors => this.doctors = doctors,
       error =>
       {
+        this.error = error;
         alert(error);
         console.error('An error occurred in retrieving doctors list, navigating to login: ', error);
       });
@@ -55,7 +54,6 @@ export class DoctorListComponent
   onChangeFirstName()
   {
     let index;
-
     for (let i = 0; i < this.doctors.length; i++)
     {
       if (this.doctors[i].id === this.selectedDoctor.id)
@@ -63,9 +61,17 @@ export class DoctorListComponent
         index = i;
       }
     }
-
     this.doctorService.changeFirstName(this.selectedDoctor, this.firstName)
       .subscribe(doctor => this.doctors[index] = doctor);
   }
+
+  deleteDoctor(doctor: Doctor)
+  {
+    this.doctorService.deleteDoctor(doctor).subscribe();
+    let index = this.doctors.findIndex(doc => doc.email === doctor.email);
+    this.doctors.splice(index, 1);
+  }
+
+
 
 }

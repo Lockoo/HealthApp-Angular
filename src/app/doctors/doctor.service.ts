@@ -41,9 +41,10 @@ export class DoctorService
     return this.http.post<Doctor>(url, updatedDoc, this.httpOptions);
   }
 
-  changeSpeciality(speciality: string)
+  deleteDoctor(doctor: Doctor)
   {
-
+    const url = this.doctorsUrl + 'delete';
+    return this.http.post(url, doctor, this.httpOptions);
   }
 
 }

@@ -25,6 +25,8 @@
     <div>
       <button type="button" (click)="selectedDoctor = doctor">Change first name
       </button>
+      <button type="button" (click)="deleteDoctor(doctor)">Delete Doctor
+      </button>
     </div>
     <form *ngIf="selectedDoctor == doctor" (ngSubmit) = "onChangeFirstName()">
     	<input type="text" name="firstName" id="firstName" placeholder="new Firstname" required [(ngModel)]="firstName">
