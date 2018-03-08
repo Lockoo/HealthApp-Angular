@@ -10,12 +10,9 @@ import {AuthModule } from './auth/auth.module';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {provideRoutes} from '@angular/router';
-
-
 import {DocModule} from './doctors/doc.module';
 
 
@@ -29,7 +26,6 @@ import {DocModule} from './doctors/doc.module';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule,

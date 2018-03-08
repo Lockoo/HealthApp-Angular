@@ -1,16 +1,10 @@
 import {Login, SignupStatus, NewUser} from './login';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions, Response, Headers} from '@angular/http';
-
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
-
-//import {Login, LoginStatus, NewUser, SignupStatus} from './login';
 import {Observer} from 'rxjs/Observer';
 import {Router} from '@angular/router';
-//import {Cookie} from 'ng2-cookies';
+
 
 @Injectable()
 export class AuthService
@@ -19,12 +13,15 @@ export class AuthService
   public isLoggedIn: Observable<boolean>;
   public user = {name: 'Guest'};
   public redirectUrl: string;
-
   private observer: Observer<boolean>;
   private serverUrl = 'http://localhost:8080';
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
-  constructor(private http: Http, private router: Router)
+  constructor(private http: HttpClient, private router: Router)
   {
     this.isLoggedIn = new Observable(observer => this.observer = observer);
   }
@@ -36,33 +33,16 @@ export class AuthService
 
 
   //TODO MAPPING
-  public signup(newUser: NewUser): Promise<SignupStatus>
+  public signup(newUser: NewUser): Observable<SignupStatus>
   {
-    const url = `${this.serverUrl}/account/signup`;
-    const options = new RequestOptions({headers: this.headers});
-
-    return this.http.post(url, newUser, options)
-      .toPromise()
-      .then(res => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    const url = this.serverUrl + '/account/signup';
+    return this.http.post<SignupStatus>(url, newUser, this.httpOptions);
   }
 
   public login(login: Login): Observable<SignupStatus>
   {
-    const url = `${this.serverUrl}/account/login`;
-
-    return this.http.post(url, login, {headers: this.headers})
-      .map(response =>
-      {
-        const body = response.json();
-        if (body.code === 'USER_LOGIN_SUCCESSFUL')
-        {
-          this.changeLoginStatus(true);
-        }
-        return response.json();
-      })
-      .catch((error: any) => Observable.throw(error.json().error ||
-        'Server error'));
+    const url = this.serverUrl + '/account/login';
+    return this.http.post<SignupStatus>(url, login, this.httpOptions);
   }
 
   public logout(): void

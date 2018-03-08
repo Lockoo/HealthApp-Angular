@@ -1,6 +1,5 @@
 import { NgModule }       from '@angular/core';
 import { FormsModule }    from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +10,7 @@ import { DocRoutingModule } from './doctors-app-routing-module';
 
 @NgModule({
   imports: [
-    CommonModule, FormsModule, HttpModule, HttpClientModule, DocRoutingModule
+    CommonModule, FormsModule, HttpClientModule, DocRoutingModule
   ],
   declarations: [
      DocHomeComponent, DoctorListComponent
