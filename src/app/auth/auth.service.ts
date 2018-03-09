@@ -31,8 +31,6 @@ export class AuthService
     return this.isLoggedIn;
   }
 
-
-  //TODO MAPPING
   public signup(newUser: NewUser): Observable<SignupStatus>
   {
     const url = this.serverUrl + '/account/signup';
@@ -42,6 +40,12 @@ export class AuthService
   public login(login: Login): Observable<SignupStatus>
   {
     const url = this.serverUrl + '/account/login';
+    return this.http.post<SignupStatus>(url, login, this.httpOptions);
+  }
+
+  public loginDoctor(login: Login): Observable<SignupStatus>
+  {
+    const url = this.serverUrl + '/doc/login';
     return this.http.post<SignupStatus>(url, login, this.httpOptions);
   }
 

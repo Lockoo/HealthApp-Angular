@@ -6,9 +6,9 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'register',
-  templateUrl: './user-registration.component.html'
+  templateUrl: './registration.component.html'
 })
-export class UserRegistrationComponent
+export class RegistrationComponent
 {
   alertStyle = 'alert alert-success';
   signupStatus = new SignupStatus();

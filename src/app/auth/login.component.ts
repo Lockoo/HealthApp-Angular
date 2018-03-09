@@ -15,6 +15,7 @@ export class LoginComponent
   alertStyle = '';
   model = new Login('', '');
   loginStatus = new LoginStatus('', '', null);
+  isDoctor = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -22,20 +23,24 @@ export class LoginComponent
   onLogin()
   {
     this.reset();
-    this.authService.login(this.model)
-      .subscribe((status: LoginStatus) =>
+    if (this.isDoctor)
+    {
+      this.authService.loginDoctor(this.model).
+      subscribe((status: LoginStatus) =>
       {
         this.loginStatus = status;
-        if (this.loginStatus.code === 'FAILURE')
-        {
-          this.alertStyle = 'alert alert-danger';
-        }
-        else
-        {
-          //Navigate to user Component(Todo)
-          //this.router.navigate(['/auth/user']);
-        }
       });
+    }
+
+    else
+    {
+      this.authService.login(this.model)
+        .subscribe((status: LoginStatus) =>
+        {
+          this.loginStatus = status;
+          //TODO navigate to loggedInComponent
+        });
+    }
   }
 
   onLogout()

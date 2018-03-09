@@ -2,9 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AuthComponent} from './auth.component';
-import { DoctorRegistrationComponent } from './doc-registration.component';
 import {LoginComponent} from './login.component';
-import {UserRegistrationComponent} from './user-registration.component';
+import {RegistrationComponent} from './registration.component';
 import {ForgotPasswordComponent} from './forgot-password.component';
 import {LogoutComponent} from './logout.component';
 
@@ -19,7 +18,7 @@ const authRoutes: Routes = [
       },
       {
         path: 'register',
-        component: UserRegistrationComponent,
+        component: RegistrationComponent,
       },
       {
         path: 'forgotpassword',
@@ -28,10 +27,6 @@ const authRoutes: Routes = [
       {
         path: 'logout',
         component: LogoutComponent,
-      },
-      {
-        path: 'doc',
-        component: DoctorRegistrationComponent
       }
     ]
   }
