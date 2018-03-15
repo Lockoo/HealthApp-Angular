@@ -12,6 +12,7 @@
 	<hr />
 	<form class="form-horizontal" (ngSubmit)="onLogin()"
 		#loginForm="ngForm" novalidate>
+
 		<div class="form-group">
 			<label for="email" class="col-sm-2 control-label">Email</label>
 			<div class="col-sm-6">
@@ -22,6 +23,18 @@
 					class="alert alert-danger">Email address is required</div>
 			</div>
 		</div>
+		
+		<!--  
+		<div>
+			<label> FavFood </label>
+			<div>
+				<mat-form-field> <input matInput type="text"
+					name="favFood" id="favFood" required [(ngModel)]="model.favFood"
+					#favFood="ngModel"> </mat-form-field>
+			</div>
+		</div>
+		-->
+		
 		<div class="form-group">
 			<label for="password" class="col-sm-2 control-label">Password</label>
 			<div class="col-sm-6">

@@ -4,11 +4,14 @@ import {UsersInfo} from './UsersInfo';
 import {AuthService} from './auth.service';
 //import {LoginService} from './login.service';
 import {Router} from '@angular/router';
+import {Observable, Observer} from 'rxjs';
 
 @Component({
   selector: 'Login',
   templateUrl: './login.component.html'
 })
+
+//TODO Angular Material Form
 export class LoginComponent
 {
 
@@ -16,8 +19,13 @@ export class LoginComponent
   model = new Login('', '');
   loginStatus = new LoginStatus('', '', null);
   isDoctor = false;
+  public isLoggedIn: Observable<boolean>;
+  private observer: Observer<boolean>;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router)
+  {
+    this.isLoggedIn = new Observable(observer => this.observer = observer);
+  }
 
 
   onLogin()
@@ -26,10 +34,10 @@ export class LoginComponent
     if (this.isDoctor)
     {
       this.authService.loginDoctor(this.model).
-      subscribe((status: LoginStatus) =>
-      {
-        this.loginStatus = status;
-      });
+        subscribe((status: LoginStatus) =>
+        {
+          this.loginStatus = status;
+        });
     }
 
     else
@@ -45,7 +53,7 @@ export class LoginComponent
 
   onLogout()
   {
-    this.authService.logout();
+    this.logout();
   }
 
   private reset()
@@ -55,21 +63,22 @@ export class LoginComponent
     this.loginStatus.message = '';
   }
 
-  //warum erst bei 2. aufrum daten da?
-  public getUserCount()
+  private checkLoginStatus(): Observable<boolean>
   {
+    return this.isLoggedIn;
+  }
 
-    //    this.client.get<UsersInfo>('http://localhost:8080/login/count')
-    //      .subscribe(data => {
-    //        alert('count: ' + data.count + ', message: ' + data.message);
-    //      });
+  public logout(): void
+  {
+    this.changeLoginStatus(true);
+  }
 
-    //    alert('service invoked');
-    //    this.loginService.getUserCount()
-    //      .subscribe(usersInfo => this.usersInfo = usersInfo,
-    //      error => this.errorMessage = <any>error);
-    //    alert(this.usersInfo.count);
-    //    alert(this.usersInfo.message);
+  public changeLoginStatus(status: boolean)
+  {
+    if (this.observer !== undefined)
+    {
+      this.observer.next(status);
+    }
   }
 
 }

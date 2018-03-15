@@ -6,7 +6,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
   template: `
     <div class="jumbotron">
       <h1>Welcome to HealthApp </h1>
-      <p>This is a platform bringing together Doctors and Patients and helping them communicate, collaborate.</p>
+      <p><strong>This is a platform bringing together Doctors and Patients and helping them communicate, collaborate.</strong></p>
     </div>
         <div class="col-sm-offset-2 col-sm-10" style="padding-top: 20px">
       <span style="padding-right: 5px"><a routerLink="/auth/register" routerLinkActive="active">New User? Sign up</a></span>

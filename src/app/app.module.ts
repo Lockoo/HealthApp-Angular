@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import { AuthComponent } from './auth/auth.component';
@@ -30,7 +33,9 @@ import {DocModule} from './doctors/doc.module';
     AppRoutingModule,
     RouterModule,
     AuthModule,
-    DocModule
+    DocModule,
+    BrowserAnimationsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
