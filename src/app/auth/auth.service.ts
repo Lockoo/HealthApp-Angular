@@ -15,9 +15,7 @@ export class AuthService
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
-    withCredentials: true
   };
-  authenticated = false;
 
   constructor(private http: HttpClient, private router: Router)
   {
@@ -33,25 +31,6 @@ export class AuthService
   {
     const url = this.serverUrl + '/account/login';
     return this.http.post<SignupStatus>(url, login, this.httpOptions);
-  }
-
-  public authenticate(credentials, callback)
-  {
-    const headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic ' + btoa(credentials.email + ':' + credentials.password)
-    } : {});
-
-    this.http.get('user', {headers: headers}).subscribe(response =>
-    {
-      if (response['name'])
-      {
-        this.authenticated = true;
-      } else
-      {
-        this.authenticated = false;
-      }
-      return callback && callback();
-    });
   }
 
   public loginDoctor(login: Login): Observable<SignupStatus>
