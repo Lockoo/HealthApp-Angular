@@ -17,6 +17,7 @@ import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {provideRoutes} from '@angular/router';
 import {DocModule} from './doctors/doc.module';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -24,7 +25,8 @@ import {DocModule} from './doctors/doc.module';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

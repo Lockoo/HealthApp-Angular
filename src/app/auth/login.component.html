@@ -1,11 +1,11 @@
 <div class="{{alertStyle}}" role="alert"
 	*ngIf="loginStatus.code != '' && loginStatus.code != 'FAILURE' && isDoctor == false">
-	Welcome, {{loginStatus.user.firstName}}!</div>
+	<font size = 5>Welcome, {{loginStatus.user.firstName}}! </font></div>
 <div class="{{alertStyle}}" role="alert"
 	*ngIf="loginStatus.code != '' && loginStatus.code != 'FAILURE' && isDoctor == true">
-	Welcome, Doctor {{loginStatus.user.firstName}}!</div>
+	<font size="5">Welcome, Doctor {{loginStatus.user.firstName}}!</font></div>
 <div class="{{alertStyle}}" role="alert"
-	*ngIf="loginStatus.code == 'FAILURE'">Login failed!</div>
+	*ngIf="loginStatus.code == 'FAILURE'"> <font size="5" color="red">Login failed</font></div>
 <div style="width: 60%; margin-top: 50px"
 	*ngIf="loginStatus.code === '' || loginStatus.code ==='FAILURE'">
 	<h2>Login</h2>

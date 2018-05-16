@@ -21,6 +21,7 @@ export class DoctorListComponent
 
   constructor(private doctorService: DoctorService)
   {
+    this.setSpeciality = '';
     this.doctors = new Array();
     this.selectedDoctor = new Doctor(-1, '', '', '', '');
   }

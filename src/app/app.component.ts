@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 
 
 export class AppComponent {
+  name = '';
   title = 'app-root';
   constructor(private router: Router) {}
 
